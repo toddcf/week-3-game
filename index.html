@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Hangman | Robert De Niro Edition</title>
+</head>
+<body>
+
+<div id="game">
+	<h1>Hangman | Robert De Niro Edition</h1>
+	<p>Press any key to get started!</p>
+	<p><h3>Wins: <span id="wins"></span><h3></p>
+
+	<!-- Insert BLANK SPACES here. -->
+
+	<p>Number of Guesses Remaining: <span id="guessTally"></span></p>
+	<p>Letters Already Guessed: <span id="lettersGuessed"></span></p>
+</div>
+
+<script type="text/javascript">
+
+// Create an array that lists out all of the options
+// Is there a shortcut for making the whole alphabet an option?
+var options = ['r','p','s'];
+
+var wins = 0;
+var guessTally = 0;
+var lettersGuessed = 0;
+
+// Captures Key Clicks
+document.onkeyup = function(event) {
+
+	// Determines which exact key was selected. Make it CAPS.
+	var userGuess = String.fromCharCode(event.keyCode).toUpperCase();
+
+	// Change this to display user guess either in the correct blank or as an incorrect guess.
+	alert(userGuess);
+
+	// Create code to randomly choose one of the movie titles (Computer) 
+	var movieTitle = options[Math.floor(Math.random()*options.length)];
+
+	// firstChar, secondChar, etc., however it's coded.
+	if(userGuess == movieTitle ) {
+		wins++;
+	}
+
+	if(userGuess == 'r' && computerGuess == 'p') {
+		losses++;
+	}
+
+	if(userGuess == 'p' && computerGuess == 'r') {
+		wins++;
+	}
+
+	if(userGuess == 'p' && computerGuess == 's') {
+		losses++
+	}
+
+	if(userGuess == 's' && computerGuess == 'r') {
+		losses++;
+	}
+
+	if(userGuess == 's' && computerGuess == 'p') {
+		wins++
+	}
+
+	if(userGuess == computerGuess) {
+		ties++;
+	}
+
+document.getElementById("wins").innerHTML = wins;
+document.getElementById("losses").innerHTML = losses;
+document.getElementById("ties").innerHTML = ties;
+	
+}
+
+</script>
+</body>
+</html>
