@@ -21,11 +21,38 @@
 
 // Create an array that lists out all of the options
 // Is there a shortcut for making the whole alphabet an option?
-var options = ['r','p','s'];
+var alphabet = ['A','B','C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
 var wins = 0;
 var guessTally = 0;
 var lettersGuessed = 0;
+
+// List of Robert De Niro movie titles.
+var meanStreets1973;
+var taxiDriver1976;
+var theGodfatherPartII1974;
+var theDeerHunter1978;
+var ragingBull1980;
+var theUntouchables1987;
+var goodfellas1990;
+var capeFear1991;
+var thisBoysLife1993;
+var aBronxTale1993;
+var heat1995;
+var casino1995;
+var sleepers1996;
+var copLand1997;
+var wagTheDog1997;
+var jackieBrown1997;
+var greatExpectations1998;
+var ronin1998;
+var analyzeThis1999;
+var whatJustHappened2008;
+var silverLiningsPlaybook2012;
+
+// Alternate Method:
+var options = ['Mean Streets', 'Taxi Driver', 'The Godfather Part II', 'The Deer Hunter', 'Raging Bull', 'The Untouchables', 'Goodfellas', 'Cape Fear', 'This Boy\'s Life',]
+
 
 // Captures Key Clicks
 document.onkeyup = function(event) {
@@ -36,16 +63,18 @@ document.onkeyup = function(event) {
 	// Change this to display user guess either in the correct blank or as an incorrect guess.
 	alert(userGuess);
 
-	// Create code to randomly choose one of the movie titles (Computer) 
+	// Create code to randomly choose one of the movie titles from a list.  (Make this list of title elsewhere.)
 	var movieTitle = options[Math.floor(Math.random()*options.length)];
 
-	// firstChar, secondChar, etc., however it's coded.
-	if(userGuess == movieTitle ) {
-		wins++;
-	}
+	// For starters, experimenting with "Heat."
+	var heat1995 = ['H', 'E', 'A', 'T']
 
-	if(userGuess == 'r' && computerGuess == 'p') {
-		losses++;
+	// firstChar, secondChar, etc., however it's coded.
+	// I think this should be a for loop that checks each letter against the expected letters in the array(?).  IF it is equal to, then it displays the letter in that blank and logs a win.  If not, it moves on to the next space.  If none match, it logs a losing turn and prompts the next turn.  Set to stop checking after heat1995.length.
+
+	if(userGuess == heat1995[0]) {
+		wins++;
+		// Display heat1995[0];
 	}
 
 	if(userGuess == 'p' && computerGuess == 'r') {
@@ -64,15 +93,36 @@ document.onkeyup = function(event) {
 		wins++
 	}
 
-	if(userGuess == computerGuess) {
-		ties++;
-	}
-
 document.getElementById("wins").innerHTML = wins;
 document.getElementById("losses").innerHTML = losses;
 document.getElementById("ties").innerHTML = ties;
 	
 }
+
+	// A "Function" is created that allows us to "call" (run) the loop for any array we wish.
+	// We pass in an array as an "argument".  "Array" is a protected word, so don't write out the whole thing -- it can confuse the computer.
+	function consoleInside(arr){
+
+		// We then loop through the selected array
+		for (var i = 0; i < arr.length; i++){
+
+			// Each time we print the value inside the array
+			console.log(arr[i]);
+		}
+		console.log('---------');
+	}
+
+
+	// FUNCTION CALLS (Execution)
+	// =======================================================================================
+
+	// Here we call on the function to run the for-loop code on each of the below arrays
+	consoleInside(brands);
+	consoleInside(heroes);
+	consoleInside(booksOnMyShelf);
+	consoleInside(thingsInFrontOfMe);
+	consoleInside(howIFeel);
+
 
 </script>
 </body>
