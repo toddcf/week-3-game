@@ -19,39 +19,71 @@
 
 <script type="text/javascript">
 
-// Create an array that lists out all of the options
 // Is there a shortcut for making the whole alphabet an option?
-var alphabet = ['A','B','C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+// var alphabet = ['A','B','C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
 var wins = 0;
 var guessTally = 0;
 var lettersGuessed = 0;
 
 // List of Robert De Niro movie titles.
-var meanStreets1973;
-var taxiDriver1976;
-var theGodfatherPartII1974;
-var theDeerHunter1978;
-var ragingBull1980;
-var theUntouchables1987;
-var goodfellas1990;
-var capeFear1991;
-var thisBoysLife1993;
-var aBronxTale1993;
-var heat1995;
-var casino1995;
-var sleepers1996;
-var copLand1997;
-var wagTheDog1997;
-var jackieBrown1997;
-var greatExpectations1998;
-var ronin1998;
-var analyzeThis1999;
-var whatJustHappened2008;
-var silverLiningsPlaybook2012;
+// var meanStreets1973;
+// var taxiDriver1976;
+// var theGodfatherPartII1974;
+// var theDeerHunter1978;
+// var ragingBull1980;
+// var theUntouchables1987;
+// var goodfellas1990;
+// var capeFear1991;
+// var thisBoysLife1993;
+// var aBronxTale1993;
+// var heat1995;
+// var casino1995;
+// var sleepers1996;
+// var copLand1997;
+// var wagTheDog1997;
+// var jackieBrown1997;
+// var greatExpectations1998;
+// var ronin1998;
+// var analyzeThis1999;
+// var whatJustHappened2008;
+// var silverLiningsPlaybook2012;
 
-// Alternate Method:
-var options = ['Mean Streets', 'Taxi Driver', 'The Godfather Part II', 'The Deer Hunter', 'Raging Bull', 'The Untouchables', 'Goodfellas', 'Cape Fear', 'This Boy\'s Life',]
+// List of Robert De Niro movie titles.
+var movieTitleArray = [
+	'MEAN STREETS',
+	'TAXI DRIVER',
+	'THE GODFATHER PART II',
+	'THE DEER HUNTER',
+	'RAGING BULL',
+	'THE UNTOUCHABLES',
+	'GOODFELLAS',
+	'CAPE FEAR',
+	'THIS BOY\'S LIFE',
+	'A BRONX TALE',
+	'HEAT',
+	'CASINO',
+	'SLEEPERS',
+	'COP LAND',
+	'WAG THE DOG',
+	'JACKIE BROWN',
+	'GREAT EXPECTATIONS',
+	'RONIN',
+	'ANALYZE THIS',
+	'WHAT JUST HAPPENED',
+	'SILVER LININGS PLAYBOOK'
+	];
+
+// Computer randomly chooses one of the movie titles from the array.
+var randomMovieTitle = movieTitleArray[Math.floor(Math.random()*movieTitleArray.length)];
+
+// Use a SPLIT to insert any spaces.
+randomMovieTitle.split(' ');
+
+// Once the movieTitle has been randomly chosen, it needs to be displayed in blanks so the viewer knows how many characters to guess.
+// randomMovieTitle = randomMovieTitle.replace(/\s/g, "_");
+console.log(randomMovieTitle);
+
 
 
 // Captures Key Clicks
@@ -63,40 +95,44 @@ document.onkeyup = function(event) {
 	// Change this to display user guess either in the correct blank or as an incorrect guess.
 	alert(userGuess);
 
-	// Create code to randomly choose one of the movie titles from a list.  (Make this list of title elsewhere.)
-	var movieTitle = options[Math.floor(Math.random()*options.length)];
-
 	// For starters, experimenting with "Heat."
-	var heat1995 = ['H', 'E', 'A', 'T']
+	// Does the options array start counting at 0 or 1?  I started at 0.
+	if randomMovieTitle = movieTitleArray[10] {
 
-	// firstChar, secondChar, etc., however it's coded.
-	// I think this should be a for loop that checks each letter against the expected letters in the array(?).  IF it is equal to, then it displays the letter in that blank and logs a win.  If not, it moves on to the next space.  If none match, it logs a losing turn and prompts the next turn.  Set to stop checking after heat1995.length.
+		// Use a for loop to check charAt for each position of this guess.
+		// If it matches, it replaces that blank with that letter on the game's display.  If not, it leaves it as an underscore.  Regardless, it then it checks the next charAt.
+		// If there was a match (or multiple matches), congratulate player.
+		// If there were no matches, subtract one life.
+		// Prompt next turn.
+		if(userGuess == charAt) {
 
-	if(userGuess == heat1995[0]) {
-		wins++;
-		// Display heat1995[0];
+		}
+			// Does "wins" only display after the full word is guessed?  Not after each correct character guess?
+			wins++;
+			// Display heat1995[0];
+		}
+
+		if(userGuess == 'p' && computerGuess == 'r') {
+			wins++;
+		}
+
+		if(userGuess == 'p' && computerGuess == 's') {
+			losses++
+		}
+
+		if(userGuess == 's' && computerGuess == 'r') {
+			losses++;
+		}
+
+		if(userGuess == 's' && computerGuess == 'p') {
+			wins++
+		}
+
+	document.getElementById("wins").innerHTML = wins;
+	document.getElementById("losses").innerHTML = losses;
+	document.getElementById("ties").innerHTML = ties;
+		
 	}
-
-	if(userGuess == 'p' && computerGuess == 'r') {
-		wins++;
-	}
-
-	if(userGuess == 'p' && computerGuess == 's') {
-		losses++
-	}
-
-	if(userGuess == 's' && computerGuess == 'r') {
-		losses++;
-	}
-
-	if(userGuess == 's' && computerGuess == 'p') {
-		wins++
-	}
-
-document.getElementById("wins").innerHTML = wins;
-document.getElementById("losses").innerHTML = losses;
-document.getElementById("ties").innerHTML = ties;
-	
 }
 
 	// A "Function" is created that allows us to "call" (run) the loop for any array we wish.
