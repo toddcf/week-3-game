@@ -1,165 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Hangman | Robert De Niro Edition</title>
-</head>
-<body>
+	
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+		<script src="assets/javascript/game.js" type="text/javascript"></script>
+		<title>Hangman | Robert De Niro Edition</title>
+	</head>
+	
+	<body>
 
-<div id="game">
-	<h1>Hangman | Robert De Niro Edition</h1>
-	<p>Press any key to get started!</p>
-	<p><h3>Wins: <span id="wins"></span><h3></p>
+		<div id="game">
+			<div id="title">
+				<h1>Hangman | Robert De Niro Edition</h1>
+			</div>
+			<div id="instructions">
+				<p>Press any key to get started!</p>
+			</div>
+			<!-- Insert BLANK SPACES here. -->
+			<div id="blanks">
+				<p><h3></h3></p>
+			</div>
+			<div id="scorebox">
+				<p><h3>Wins: <span id="wins"></span></h3></p>
+				<p><h3>Number of Guesses Remaining: <span id="guessTally"></span></h3></p>
+				<p><h3>Letters Already Guessed: <span id="lettersGuessed"></span></h3></p>
+			</div>
+		</div>
 
-	<!-- Insert BLANK SPACES here. -->
+	</body>
 
-	<p>Number of Guesses Remaining: <span id="guessTally"></span></p>
-	<p>Letters Already Guessed: <span id="lettersGuessed"></span></p>
-</div>
-
-<script type="text/javascript">
-
-// Is there a shortcut for making the whole alphabet an option?
-// var alphabet = ['A','B','C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-
-var wins = 0;
-var guessTally = 0;
-var lettersGuessed = 0;
-
-// List of Robert De Niro movie titles.
-// var meanStreets1973;
-// var taxiDriver1976;
-// var theGodfatherPartII1974;
-// var theDeerHunter1978;
-// var ragingBull1980;
-// var theUntouchables1987;
-// var goodfellas1990;
-// var capeFear1991;
-// var thisBoysLife1993;
-// var aBronxTale1993;
-// var heat1995;
-// var casino1995;
-// var sleepers1996;
-// var copLand1997;
-// var wagTheDog1997;
-// var jackieBrown1997;
-// var greatExpectations1998;
-// var ronin1998;
-// var analyzeThis1999;
-// var whatJustHappened2008;
-// var silverLiningsPlaybook2012;
-
-// List of Robert De Niro movie titles.
-var movieTitleArray = [
-	'MEAN STREETS',
-	'TAXI DRIVER',
-	'THE GODFATHER PART II',
-	'THE DEER HUNTER',
-	'RAGING BULL',
-	'THE UNTOUCHABLES',
-	'GOODFELLAS',
-	'CAPE FEAR',
-	'THIS BOY\'S LIFE',
-	'A BRONX TALE',
-	'HEAT',
-	'CASINO',
-	'SLEEPERS',
-	'COP LAND',
-	'WAG THE DOG',
-	'JACKIE BROWN',
-	'GREAT EXPECTATIONS',
-	'RONIN',
-	'ANALYZE THIS',
-	'WHAT JUST HAPPENED',
-	'SILVER LININGS PLAYBOOK'
-	];
-
-// Computer randomly chooses one of the movie titles from the array.
-var randomMovieTitle = movieTitleArray[Math.floor(Math.random()*movieTitleArray.length)];
-
-// Use a SPLIT to insert any spaces.
-randomMovieTitle.split(' ');
-
-// Once the movieTitle has been randomly chosen, it needs to be displayed in blanks so the viewer knows how many characters to guess.
-// randomMovieTitle = randomMovieTitle.replace(/\s/g, "_");
-console.log(randomMovieTitle);
-
-
-
-// Captures Key Clicks
-document.onkeyup = function(event) {
-
-	// Determines which exact key was selected. Make it CAPS.
-	var userGuess = String.fromCharCode(event.keyCode).toUpperCase();
-
-	// Change this to display user guess either in the correct blank or as an incorrect guess.
-	alert(userGuess);
-
-	// For starters, experimenting with "Heat."
-	// Does the options array start counting at 0 or 1?  I started at 0.
-	if randomMovieTitle = movieTitleArray[10] {
-
-		// Use a for loop to check charAt for each position of this guess.
-		// If it matches, it replaces that blank with that letter on the game's display.  If not, it leaves it as an underscore.  Regardless, it then it checks the next charAt.
-		// If there was a match (or multiple matches), congratulate player.
-		// If there were no matches, subtract one life.
-		// Prompt next turn.
-		if(userGuess == charAt) {
-
-		}
-			// Does "wins" only display after the full word is guessed?  Not after each correct character guess?
-			wins++;
-			// Display heat1995[0];
-		}
-
-		if(userGuess == 'p' && computerGuess == 'r') {
-			wins++;
-		}
-
-		if(userGuess == 'p' && computerGuess == 's') {
-			losses++
-		}
-
-		if(userGuess == 's' && computerGuess == 'r') {
-			losses++;
-		}
-
-		if(userGuess == 's' && computerGuess == 'p') {
-			wins++
-		}
-
-	document.getElementById("wins").innerHTML = wins;
-	document.getElementById("losses").innerHTML = losses;
-	document.getElementById("ties").innerHTML = ties;
-		
-	}
-}
-
-	// A "Function" is created that allows us to "call" (run) the loop for any array we wish.
-	// We pass in an array as an "argument".  "Array" is a protected word, so don't write out the whole thing -- it can confuse the computer.
-	function consoleInside(arr){
-
-		// We then loop through the selected array
-		for (var i = 0; i < arr.length; i++){
-
-			// Each time we print the value inside the array
-			console.log(arr[i]);
-		}
-		console.log('---------');
-	}
-
-
-	// FUNCTION CALLS (Execution)
-	// =======================================================================================
-
-	// Here we call on the function to run the for-loop code on each of the below arrays
-	consoleInside(brands);
-	consoleInside(heroes);
-	consoleInside(booksOnMyShelf);
-	consoleInside(thingsInFrontOfMe);
-	consoleInside(howIFeel);
-
-
-</script>
-</body>
 </html>
