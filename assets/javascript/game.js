@@ -1,9 +1,15 @@
 // Is there a shortcut for making the whole alphabet an option?
 // var alphabet = ['A','B','C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
+
+// Why do I need to start "wins" at 1, but in console.log it shows as zero??
 var wins = 0;
 var remainingGuesses = 15;
 var lettersGuessed = 0;
+
+// Display starting scoreboard.
+document.getElementById("wins");
+document.getElementById("remainingGuesses");
 
 // Array of Robert De Niro movie titles.
 var movieTitleArray = [
@@ -21,9 +27,14 @@ var randomMovieTitle = movieTitleArray[Math.floor(Math.random()*movieTitleArray.
 console.log('Correct Answer: ' + randomMovieTitle);
 
 // Displays one underscore per character to be guessed.
-// randomMovieTitle = randomMovieTitle.replace(/\s/g, "_");
-
-
+randomMovieTitle = randomMovieTitle.replace(" _ ");
+// var blankGrid = document.randomMovieTitle("blanks");
+// function createBlanks() {
+// 	for (i = 0; i < randomMovieTitle.length; i++) {
+// 		var newH2 = document.createElement("h2");
+// 		newH2.innerHTML = " _ ";
+// 	}
+// }
 
 
 // Captures Key Clicks
@@ -44,27 +55,36 @@ document.onkeyup = function(event) {
 			
 			// If there was a match (or multiple matches), congratulate player.
 			alert('Correct!');
-			// Also add the correct letter to "Letters Guessed."
-			document.getElementById("lettersGuessed").innerHTML = userGuess;
+			// Replace the appropriate blank with userGuess.
+
 			// Add win tally.
-			// Use APPEND to keep adding letters instead of replacing them each time.
 			document.getElementById("wins").innerHTML = wins++;
-		}
-		else {
-			// If there were no matches, prompt next turn.
-			alert('Sorry -- try again.');
-			// Subtract one life.
-			document.getElementById("remainingGuesses").innerHTML = remainingGuesses--;
-			// Add the incorrect letter to "Letters Guessed."
-			// Use APPEND to keep adding letters instead of replacing them each time.
-			document.getElementById("lettersGuessed").innerHTML = userGuess;
+			console.log(wins);
 		}
 	}
 
-	
-	// document.getElementById("losses").innerHTML = losses;
-		
+	// If win tally does not increase, prompt next turn.
+	if (this.wins === wins) {
+		alert('Sorry -- try again.');
+		// Subtract one life.
+		document.getElementById("remainingGuesses").innerHTML = remainingGuesses--;
 	}
+
+	// Correct or incorrect, display the guessed letter.
+	document.getElementById("lettersGuessed").innerHTML = userGuess;
+	// Use APPEND to keep adding letters instead of replacing them each time.
+
+
+	if (wins >= randomMovieTitle.length) {
+		confirm('YOU WIN! Play Again?');
+	}
+
+	if (remainingGuesses < 1) {
+		confirm('Game Over. Play Again?');
+		// If OK, reset the game.
+	}
+		
+}
 
 	// A "Function" is created that allows us to "call" (run) the loop for any array we wish.
 	// We pass in an array as an "argument".  "Array" is a reserved word, so don't write out the whole thing -- it can confuse the computer.
