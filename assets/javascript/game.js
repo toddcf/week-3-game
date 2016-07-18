@@ -43,20 +43,25 @@ document.onkeyup = function(event) {
 			// If it matches, it replaces that blank with that letter on the game's display.  If not, it leaves it as an underscore.  Regardless, it then it checks the next charAt.
 			
 			// If there was a match (or multiple matches), congratulate player.
-			alert('Correct!')
+			alert('Correct!');
 			// Also add the correct letter to "Letters Guessed."
+			document.getElementById("lettersGuessed").innerHTML = userGuess;
+			// Add win tally.
+			// Use APPEND to keep adding letters instead of replacing them each time.
+			document.getElementById("wins").innerHTML = wins++;
 		}
 		else {
 			// If there were no matches, prompt next turn.
-			alert('Sorry -- try again.')
+			alert('Sorry -- try again.');
 			// Subtract one life.
-			remainingGuesses--;
+			document.getElementById("remainingGuesses").innerHTML = remainingGuesses--;
 			// Add the incorrect letter to "Letters Guessed."
-			// this.userGuess
+			// Use APPEND to keep adding letters instead of replacing them each time.
+			document.getElementById("lettersGuessed").innerHTML = userGuess;
 		}
 	}
 
-	document.getElementById("remainingGuesses").innerHTML = wins;
+	
 	// document.getElementById("losses").innerHTML = losses;
 		
 	}
