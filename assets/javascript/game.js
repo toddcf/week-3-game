@@ -27,7 +27,11 @@ var randomMovieTitle = movieTitleArray[Math.floor(Math.random()*movieTitleArray.
 console.log('Correct Answer: ' + randomMovieTitle);
 
 // Displays one underscore per character to be guessed.
-randomMovieTitle = randomMovieTitle.replace(" _ ");
+for (var i = 0; i < randomMovieTitle.length; i++) {
+	userGuess = document.createElement('li');
+		randomMovieTitle.innerHTML = " _ ";
+}
+// randomMovieTitle = randomMovieTitle.replace(" _ ");
 // var blankGrid = document.randomMovieTitle("blanks");
 // function createBlanks() {
 // 	for (i = 0; i < randomMovieTitle.length; i++) {
