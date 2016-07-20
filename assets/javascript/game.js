@@ -1,7 +1,3 @@
-// Is there a shortcut for making the whole alphabet an option?
-// var alphabet = ['A','B','C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-
-
 // Why do I need to start "wins" at 1, but in console.log it shows as zero??
 var wins = 0;
 var remainingGuesses = 15;
@@ -45,7 +41,7 @@ for (i = 0; i < randomMovieTitle.length; i++) {
 // MAKE BLANKS V4:
 // setUnderline = function() {
 // 	randomMovieTitle() {
-		
+
 // 	}
 // }
 
@@ -115,14 +111,3 @@ document.onkeyup = function(event) {
 			console.log(arr[i]);
 		}
 	}
-
-
-	// FUNCTION CALLS (Execution)
-	// =======================================================================================
-
-	// Here we call on the function to run the for-loop code on each of the below arrays
-	// consoleInside(brands);
-	// consoleInside(heroes);
-	// consoleInside(booksOnMyShelf);
-	// consoleInside(thingsInFrontOfMe);
-	// consoleInside(howIFeel);
