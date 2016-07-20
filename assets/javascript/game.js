@@ -31,12 +31,21 @@ for (i = 0; i < randomMovieTitle.length; i++) {
 	userGuess = document.createElement('li');
 		randomMovieTitle.innerHTML = " _ ";
 }
-// randomMovieTitle = randomMovieTitle.replace(" _ ");
-// var blankGrid = document.randomMovieTitle("blanks");
-// function createBlanks() {
+
+// MAKE BLANKS V3:
+// result = function () {
+// 	wordHolder = document.getElementById("blanks");
+// 	correct = document.createElement("ui");
 // 	for (i = 0; i < randomMovieTitle.length; i++) {
-// 		var newH2 = document.createElement("h2");
-// 		newH2.innerHTML = " _ ";
+// 		blank = document.createElement("li");
+// 		blank.innerHTML = " _ ";
+// 	}
+// }
+
+// MAKE BLANKS V4:
+// setUnderline = function() {
+// 	randomMovieTitle() {
+		
 // 	}
 // }
 
@@ -56,8 +65,12 @@ document.onkeyup = function(event) {
 	for (i = 0; i < randomMovieTitle.length; i++) {
 		if(userGuess === randomMovieTitle.charAt(i)) {
 			
-			// If it matches, it replaces that blank with that letter on the game's display.  If not, it leaves it as an underscore.  Regardless, it then it checks the next charAt.
-			document.getElementById(i).innerHTML = userGuess;
+			// If it matches, it replaces that blank with that letter on the game's display.
+			// If not, it leaves it as an underscore.
+			// Regardless, it then it checks the next charAt.
+			// But it's giving me an error and stopping the game, so I have to comment it out.
+			// document.getElementById(i).innerHTML = userGuess;
+
 			// If there was a match (or multiple matches), congratulate player.
 			alert('Correct!');
 			// Replace the appropriate blank with userGuess.
