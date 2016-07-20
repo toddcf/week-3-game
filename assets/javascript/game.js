@@ -27,7 +27,7 @@ var randomMovieTitle = movieTitleArray[Math.floor(Math.random()*movieTitleArray.
 console.log('Correct Answer: ' + randomMovieTitle);
 
 // Displays one underscore per character to be guessed.
-for (var i = 0; i < randomMovieTitle.length; i++) {
+for (i = 0; i < randomMovieTitle.length; i++) {
 	userGuess = document.createElement('li');
 		randomMovieTitle.innerHTML = " _ ";
 }
@@ -55,8 +55,9 @@ document.onkeyup = function(event) {
 	// Use a for loop to check charAt for each position of this guess.
 	for (i = 0; i < randomMovieTitle.length; i++) {
 		if(userGuess === randomMovieTitle.charAt(i)) {
-			// If it matches, it replaces that blank with that letter on the game's display.  If not, it leaves it as an underscore.  Regardless, it then it checks the next charAt.
 			
+			// If it matches, it replaces that blank with that letter on the game's display.  If not, it leaves it as an underscore.  Regardless, it then it checks the next charAt.
+			document.getElementById(i).innerHTML = userGuess;
 			// If there was a match (or multiple matches), congratulate player.
 			alert('Correct!');
 			// Replace the appropriate blank with userGuess.
