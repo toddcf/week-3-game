@@ -3,9 +3,12 @@
 	
 	<head>
 		<meta charset="UTF-8">
-		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-		<script src="assets/javascript/game.js" type="text/javascript"></script>
 		<title>Hangman | Robert De Niro Edition</title>
+
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+		
 	</head>
 	
 	<body>
@@ -16,25 +19,64 @@
 				<h1>Hangman | Robert De Niro Edition</h1>
 			</header>
 
-			<div id="game">
-				
+			<div class="jumbotron">
 				<img src="assets/images/heat.jpg" class="banner">
-				
-				<div id="instructions">
-					<p>Press any key to get started!</p>
+				<p>Press any key to begin!</p>
+			</div>
+			
+			<!-- Movie Title -->
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title"><h3>De Niro Movie Title To Guess:
+					</h3>
 				</div>
-				
-				<div id="blanksContainer">
-					<!-- Insert BLANK SPACES here. -->
-					<p><h2>Movie Title: </h2><span id="blanks"><h2></h2></span></p>
-				</div>
-
-				<div id="scorebox">
-					<p><h3>Wins: <span id="wins"></span></h3></p>
-					<p><h3>Number of Guesses Remaining: <span id="remainingGuesses"></span></h3></p>
-					<p><h3>Letters Already Guessed: <span id="lettersGuessed"></span></h3></p>
+				<div class="panel-body">
+					<h2 id="wordToGuess"></h2>
 				</div>
 			</div>
+
+			<!-- Letters Already Guessed -->
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title"><h3>Incorrect Guesses:</h3>
+				</div>
+				<div class="panel-body">
+					<h2><span id="wrongGuesses"></span></h2>
+				</div>
+			</div>
+
+			<!-- Guesses Remaining -->
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<h3>Guesses Left:</h3>
+					</h3>
+				</div>
+				<div class="panel-body">
+					<h3><span id="guessesLeft">9</span></h3>
+				</div>
+			</div>
+
+			<!-- Wins -->
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title"><h3>Win Counter:</h3>
+				</div>
+				<div class="panel-body">
+					 <span id="winCounter">0</span>
+				</div>
+			</div>
+
+			<!-- Losses -->
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title"><h3>Loss Counter:</h3>
+				</div>
+				<div class="panel-body">
+					<span id="lossCounter">0</span>
+				</div>
+			</div>
+				
 
 			<footer>
 				<h5>&copy Copyright 2016 Todd Croak-Falen</h5>
@@ -42,6 +84,8 @@
 
 		</div>
 
+		<!-- JavaScript Link -->
+		<script src="assets/javascript/game.js" type="text/javascript"></script>
 	</body>
 
 </html>

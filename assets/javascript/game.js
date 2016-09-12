@@ -1,113 +1,151 @@
-// Why do I need to start "wins" at 1, but in console.log it shows as zero??
-var wins = 0;
-var remainingGuesses = 15;
-var lettersGuessed = 0;
-
-// Display starting scoreboard.
-document.getElementById("wins");
-document.getElementById("remainingGuesses");
+// GLOBAL VARIABLES:
 
 // Array of Robert De Niro movie titles.
-var movieTitleArray = [
+var wordOptions		 	= [
 	'GOODFELLAS',
 	'HEAT',
 	'CASINO',
 	'SLEEPERS',
 	'RONIN',
 	];
+var selectedWord 		= "";
+var lettersInWord 		= [];
+var numBlanks 			= 0;
+var blanksAndSuccesses 	= [];
+var wrongLetters		= [];
 
-// Computer randomly chooses one of the movie titles from the array.
-var randomMovieTitle = movieTitleArray[Math.floor(Math.random()*movieTitleArray.length)];
+// Game Counters:
+var winCount			= 0;
+var lossCount			= 0;
+var guessesLeft			= 0;
 
-// Print answer to console.
-console.log('Correct Answer: ' + randomMovieTitle);
 
-// Displays one underscore per character to be guessed.
-for (i = 0; i < randomMovieTitle.length; i++) {
-	userGuess = document.createElement('li');
-		randomMovieTitle.innerHTML = " _ ";
+// FUNCTIONS:
+
+// Start Game Function:
+function startGame(){
+	// Computer randomly chooses one of the movie titles from the array.
+	selectedWord	= wordOptions[Math.floor(Math.random()*wordOptions.length)];
+	// Break selectedWord apart into individual letters:
+	lettersInWord	= selectedWord.split("");
+	// Determine number of blanks for selectedWord:
+	numBlanks		= lettersInWord.length;
+
+	// Reset SOME of the variables for each successive game:
+	guessesLeft			= 9;
+	wrongLetters		= [];
+	blanksAndSuccesses	= [];
+
+	// Populate blanksAndSuccesses with correct number of blanks:
+	for ( var i = 0; i < numBlanks; i++) {
+		blanksAndSuccesses.push("_");
+	}
+
+	// Change HTML to reflect game conditions:
+
+	// Print blanks to HTML page:
+	document.getElementById("wordToGuess").innerHTML	= blanksAndSuccesses.join("  ");
+	// Print number of guesses left to HTML page:
+	// document.getElementById("numGuesses").innerHTML		= guessesLeft;
+	// Print winCount to HTML page:
+	document.getElementById("winCounter").innerHTML		= winCount;
+	// Print lossCount to HTML page:
+	document.getElementById("lossCounter").innerHTML	= lossCount;
+
+	// Testing / Debugging:
+	console.log('Correct Answer: ' + selectedWord);
+	console.log(lettersInWord);
+	console.log('Number of Blanks: ' + numBlanks);
+	console.log(blanksAndSuccesses);
 }
 
-// MAKE BLANKS V3:
-// result = function () {
-// 	wordHolder = document.getElementById("blanks");
-// 	correct = document.createElement("ui");
-// 	for (i = 0; i < randomMovieTitle.length; i++) {
-// 		blank = document.createElement("li");
-// 		blank.innerHTML = " _ ";
-// 	}
-// }
+// Check Letters:
+function checkLetters(letter) {
+	// Does the letter exist anywhere in the selectedWord?
+	var isLetterInWord = false;
 
-// MAKE BLANKS V4:
-// setUnderline = function() {
-// 	randomMovieTitle() {
+	for (var i = 0; i < numBlanks; i++) {
+		if (selectedWord[i] == letter) {
+			isLetterInWord = true;
+			console.log('Letter Found.');
+		}
+	}
 
-// 	}
-// }
+	// Check where in word letter appears, then populate
+	// blanksAndSuccesses array.
+	if (isLetterInWord) {
+		for (var i = 0; i < numBlanks; i++) {
+			if (selectedWord[i] == letter) {
+				blanksAndSuccesses[i] = letter;
+			}
+		}
+	}
 
+	// Letter wasn't found:
+	else {
+		wrongLetters.push(letter);
+		guessesLeft--
+	}
+
+	// Testing and debugging:
+	console.log(blanksAndSuccesses);
+}
+
+// Check each time to see if round is finished:
+function roundComplete() {
+	console.log(
+		"Win Count: " + winCount + 
+		" | Loss Count: " + lossCount + 
+		" | Guesses Left: " + guessesLeft);
+
+	// Update HTML each round:
+	document.getElementById("guessesLeft").innerHTML = guessesLeft;
+	document.getElementById("wordToGuess").innerHTML = blanksAndSuccesses.join(" ");
+	document.getElementById("wrongGuesses").innerHTML = wrongLetters.join(" ");
+
+	// Check if user won:
+	if (lettersInWord.toString() == blanksAndSuccesses.toString()) {
+		// Update win counter:
+		winCount++;
+		// Push win counter to HTML:
+		document.getElementById("winCounter").innerHTML = winCount;
+		// Congratulate player and offer new game:
+		confirm("You Won! Would you like to play again?");
+
+		// FIX THIS TO start new game ONLY if they click OK. 
+		// Not if they click Cancel.
+		startGame();
+	}
+	// Check if user lost:
+	else if (guessesLeft == 0) {
+		// Update loss counter:
+		lossCount++;
+		// Push loss counter to HTML:
+		document.getElementById("lossCounter").innerHTML = lossCount;
+		// Offer player a new game:
+		confirm("Sorry, you've used up all your guesses. Would you like to start a new game?");
+		// FIX THIS TO start new game ONLY if they click OK. Not if they click Cancel.
+		startGame();
+	}
+}
+
+
+// MAIN PROCESS:
+
+// Call the startGame function:
+startGame();
 
 // Captures Key Clicks
 document.onkeyup = function(event) {
 
-	// Determines which exact key was selected. Make it CAPS.
+	// Determines which exact key was selected. Makes it CAPS.
+	// FIX THIS TO ONLY ACCEPT ALPHANUMERIC KEYS. Right now, arrow 
+	// keys, etc. are being logged as entries.
 	var userGuess = String.fromCharCode(event.keyCode).toUpperCase();
+	checkLetters(userGuess);
+	roundComplete();
 
-	// Change this to display user guess either in the correct blank or as an incorrect guess.
-	alert('You guessed ' + userGuess);
+	// Show the letter guessed:
+	console.log('You guessed ' + userGuess);
 
-	
-
-	// Use a for loop to check charAt for each position of this guess.
-	for (i = 0; i < randomMovieTitle.length; i++) {
-		if(userGuess === randomMovieTitle.charAt(i)) {
-			
-			// If it matches, it replaces that blank with that letter on the game's display.
-			// If not, it leaves it as an underscore.
-			// Regardless, it then it checks the next charAt.
-			// But it's giving me an error and stopping the game, so I have to comment it out.
-			// document.getElementById(i).innerHTML = userGuess;
-
-			// If there was a match (or multiple matches), congratulate player.
-			alert('Correct!');
-			// Replace the appropriate blank with userGuess.
-
-			// Add win tally.
-			document.getElementById("wins").innerHTML = wins++;
-			console.log(wins);
-		}
-	}
-
-	// If win tally does not increase, prompt next turn.
-	if (this.wins === wins) {
-		alert('Sorry -- try again.');
-		// Subtract one life.
-		document.getElementById("remainingGuesses").innerHTML = remainingGuesses--;
-	}
-
-	// Correct or incorrect, display the guessed letter.
-	document.getElementById("lettersGuessed").innerHTML = userGuess;
-	// Use APPEND to keep adding letters instead of replacing them each time.
-
-
-	if (wins >= randomMovieTitle.length) {
-		confirm('YOU WIN! Play Again?');
-	}
-
-	if (remainingGuesses < 1) {
-		confirm('Game Over. Play Again?');
-		// If OK, reset the game.
-	}
-		
 }
-
-	// A "Function" is created that allows us to "call" (run) the loop for any array we wish.
-	// We pass in an array as an "argument".  "Array" is a reserved word, so don't write out the whole thing -- it can confuse the computer.
-	function consoleInside(arr){
-
-		// We then loop through the selected array
-		for (var i = 0; i < arr.length; i++){
-
-			// Each time we print the value inside the array
-			console.log(arr[i]);
-		}
-	}
